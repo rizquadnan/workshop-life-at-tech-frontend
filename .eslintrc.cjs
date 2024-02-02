@@ -8,7 +8,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
   overrides: [
     {
@@ -26,6 +26,10 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "react"],
-  rules: {},
+  plugins: ["@typescript-eslint", "react", "simple-import-sort"],
+  rules: {
+    "prefer-arrow-callback": "warn",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  },
 };

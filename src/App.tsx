@@ -1,5 +1,6 @@
 import { Button } from "@mantine/core";
 import { motion } from "framer-motion";
+
 import { Query } from "./Query";
 const App = () => {
   return (
