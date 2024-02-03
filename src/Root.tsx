@@ -9,7 +9,6 @@ import { ExerciseIndex } from "@/routes/Exercise/ExerciseIndex";
 import { ExercisePending } from "@/routes/Exercise/ExercisePending";
 import { ExerciseStart } from "@/routes/Exercise/ExerciseStart";
 import { ForgotPassword } from "@/routes/ForgotPassword";
-import { Login } from "@/routes/Login";
 import PrivateLayout from "@/routes/PrivateLayout";
 import PublicLayout from "@/routes/PublicLayout";
 import { Register } from "@/routes/Register";
@@ -22,7 +21,7 @@ const routeRoot = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <Login />,
+        lazy: () => import("@/routes/Login"),
       },
       {
         path: "register",
