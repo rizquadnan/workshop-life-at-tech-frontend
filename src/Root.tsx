@@ -16,71 +16,82 @@ import { Register } from "@/routes/Register";
 const Login = lazy(() => import("@/routes/Login"));
 
 import LazyLoad from "./LazyLoad";
+import { AuthProvider } from "./providers/AuthProvider";
+import { RootLayout } from "./routes/RootLayout";
 
 const routeRoot = createBrowserRouter([
   {
-    path: "/",
-    element: <PublicLayout />,
+    element: (
+      <AuthProvider>
+        <RootLayout />
+      </AuthProvider>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "login",
-        element: (
-          <LazyLoad>
-            <Login />
-          </LazyLoad>
-        ),
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "forgot-password",
-        element: <ForgotPassword />,
-      },
-    ],
-  },
-  {
-    path: "/app",
-    element: <PrivateLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <Dashboard />,
-      },
-      {
-        path: "exercise",
+        path: "/",
+        element: <PublicLayout />,
         children: [
           {
-            index: true,
-            element: <ExerciseIndex />,
+            path: "/login",
+            element: (
+              <LazyLoad>
+                <Login />
+              </LazyLoad>
+            ),
           },
           {
-            path: "start",
-            element: <ExerciseStart />,
+            path: "/register",
+            element: <Register />,
           },
           {
-            path: "pending",
-            element: <ExercisePending />,
-          },
-          {
-            path: "active",
-            element: <ExerciseActive />,
+            path: "/forgot-password",
+            element: <ForgotPassword />,
           },
         ],
       },
       {
-        path: "customer",
+        path: "/app",
+        element: <PrivateLayout />,
+        errorElement: <ErrorPage />,
         children: [
           {
             index: true,
-            element: <CustomerIndex />,
+            element: <Dashboard />,
           },
           {
-            path: "add",
-            element: <CustomerAdd />,
+            path: "exercise",
+            children: [
+              {
+                index: true,
+                element: <ExerciseIndex />,
+              },
+              {
+                path: "start",
+                element: <ExerciseStart />,
+              },
+              {
+                path: "pending",
+                element: <ExercisePending />,
+              },
+              {
+                path: "active",
+                element: <ExerciseActive />,
+              },
+            ],
+          },
+          {
+            path: "customer",
+            children: [
+              {
+                index: true,
+                element: <CustomerIndex />,
+              },
+              {
+                path: "add",
+                element: <CustomerAdd />,
+              },
+            ],
           },
         ],
       },

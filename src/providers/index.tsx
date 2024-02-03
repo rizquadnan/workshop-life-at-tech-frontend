@@ -10,6 +10,7 @@ export const Provider = ({ children }: { children: Children }) => {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <MantineProvider theme={theme}>
+        {/* children must be a react router root */}
         <RootWrapper>{children}</RootWrapper>
       </MantineProvider>
     </QueryClientProvider>
