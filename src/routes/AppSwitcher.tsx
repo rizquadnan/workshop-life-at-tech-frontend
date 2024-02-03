@@ -1,3 +1,4 @@
+import { Button, Stack, Text, Title } from "@mantine/core";
 import { createSearchParams, useNavigate } from "react-router-dom";
 
 export default function AppSwitcher() {
@@ -9,15 +10,25 @@ export default function AppSwitcher() {
     });
   };
   return (
-    <div>
-      <h1>Baret PT App</h1>
-      <h2>Are you trainer or customer ?</h2>
-      <div>
-        <button onClick={() => handleSelectUserType("trainer")}>Trainer</button>
-        <button onClick={() => handleSelectUserType("customer")}>
+    <Stack>
+      <Title order={1}>Baret PT App</Title>
+      <Text>Are you a trainer or customer ?</Text>
+      <Stack>
+        <Button
+          variant="outline"
+          fullWidth
+          onClick={() => handleSelectUserType("trainer")}
+        >
+          Trainer
+        </Button>
+        <Button
+          variant="outline"
+          fullWidth
+          onClick={() => handleSelectUserType("customer")}
+        >
           Customer
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Stack>
+    </Stack>
   );
 }

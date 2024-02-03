@@ -1,6 +1,8 @@
 .innerContainer {
   margin-top: 64px;
   padding: 40px;
-  background-color: var(--mantine-color-dark-1);
+  border: 1px solid;
+  border-color: var(--mantine-color-gray-2);
   border-radius: var(--mantine-radius-default);
+  max-width: 480px;
 }
