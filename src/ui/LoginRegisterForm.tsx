@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 const LoginRegisterForm = ({
   type,
   userType,
+  onSubmit,
 }: {
   type: "login" | "register";
   userType: string;
+  onSubmit: (formVal: { email: string; password: string }) => void;
 }) => {
   const form = useForm({
     initialValues: {
@@ -32,7 +34,7 @@ const LoginRegisterForm = ({
   });
 
   return (
-    <form onSubmit={form.onSubmit((val) => console.log(val))}>
+    <form onSubmit={form.onSubmit((val) => onSubmit(val))}>
       <Stack>
         <TextInput label="Email" {...form.getInputProps("email")} />
         <PasswordInput label="Password" {...form.getInputProps("password")} />

@@ -5,11 +5,14 @@ import LoginRegisterForm from "@/ui/LoginRegisterForm";
 const Register = () => {
   const [searchParam] = useSearchParams();
 
+  const handleRegister = () => {};
+
   return (
     <Stack>
       <Title order={1}>Register</Title>
       <Text>Hi {searchParam.get("user_type")}!</Text>
       <LoginRegisterForm
+        onSubmit={handleRegister}
         type="register"
         userType={searchParam.get("user_type") as string}
       />
