@@ -10,14 +10,14 @@ import { ExercisePending } from "@/routes/Exercise/ExercisePending";
 import { ExerciseStart } from "@/routes/Exercise/ExerciseStart";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import { Login } from "@/routes/Login";
-import PrivateRoot from "@/routes/PrivateRoot";
-import PublicRoot from "@/routes/PublicRoot";
+import PrivateLayout from "@/routes/PrivateLayout";
+import PublicLayout from "@/routes/PublicLayout";
 import { Register } from "@/routes/Register";
 
 const routeRoot = createBrowserRouter([
   {
     path: "/",
-    element: <PublicRoot />,
+    element: <PublicLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -36,7 +36,7 @@ const routeRoot = createBrowserRouter([
   },
   {
     path: "/app",
-    element: <PrivateRoot />,
+    element: <PrivateLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
