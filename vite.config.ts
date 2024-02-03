@@ -1,6 +1,6 @@
+/// <reference types="vitest" />
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig } from "vite";
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -8,5 +8,9 @@ export default defineConfig({
     alias: {
       "@": "/src",
     },
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./src/test/setup.ts"],
   },
 });
