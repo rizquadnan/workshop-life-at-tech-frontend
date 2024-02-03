@@ -2,13 +2,12 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import ErrorPage from "@/ErrorPage";
+import AppSwitcher from "@/routes/AppSwitcher";
 import { Dashboard } from "@/routes/Dashboard";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
-import PublicLayout from "@/routes/PublicLayout";
 import { Register } from "@/routes/Register";
 const Login = lazy(() => import("@/routes/Login"));
-
 import LazyLoad from "./LazyLoad";
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./providers/AuthProvider";
@@ -37,7 +36,7 @@ const routeRoot = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <PublicLayout />,
+        element: <AppSwitcher />,
         children: [
           {
             path: "/login",

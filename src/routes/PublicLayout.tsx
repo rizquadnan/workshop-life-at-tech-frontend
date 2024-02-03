@@ -1,8 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
-export default function PublicLayout() {
+
+const PublicLayout = ({ userType }: { userType: "trainer" | "customer" }) => {
   return (
     <>
-      <h1>Public</h1>
+      <h2>Welcome {userType}</h2>
       <nav>
         <ul>
           <li>
@@ -16,7 +17,10 @@ export default function PublicLayout() {
           </li>
         </ul>
       </nav>
+
       <Outlet />
     </>
   );
-}
+};
+
+export default PublicLayout;
