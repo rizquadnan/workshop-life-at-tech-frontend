@@ -74,18 +74,12 @@ Exercise Solution Git Branch:
 
 Testing is the act of making sure our code works as expected
 
-Instructor Demo: create an integration testing for create exercise endpoint
-Participant Challenge: create an integration testing for change password endpoint
+Instructor Demo: create integration test for App Switcher
 
 Demo Start Git Branch:
 `git checkout 2-demo-testing-start`
 Demo Solution Git Branch:
 `git checkout 2-demo-testing-solution`
-
-Exercise Start Git Branch:
-`git checkout 2-exercise-testing-start`
-Exercise Solution Git Branch:
-`git checkout 2-exercise-testing-solution`
 
 ## Documentation
 
@@ -98,15 +92,12 @@ Instructor Demo: show complete documentation of Baret PT API
 Deployment is the act of making our code ready to be used by humans and/or other services
 
 **Steps to deploy**
-Deployment can be done in any platform that supports node.js runtime or supports docker deployment. to simplify things, deployment is going to be done in render.com:
+Deployment can be done in any platform that supports SPA deployment, that is any static file hosting + routing config. To simplify things, deployment is going to be done in vercel.com:
 
-1. Register to render.com
-2. Create node.js service
-3. Create postgres database service
-4. Change DATABASE_URL env on node.js service
+1. Register to vercel.com
+2. In terminal run, npx vercel --prod
 
-Instructor Demo: deploy create exercise endpoint changes
-Participant Challenge: deploy change password endpoint changes
+Instructor Demo: show redeployment
 
 ## Bug Fixing
 
