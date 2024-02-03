@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import ErrorPage from "@/ErrorPage";
 import { Dashboard } from "@/routes/Dashboard";
@@ -37,6 +37,10 @@ const routeRoot = createBrowserRouter([
       {
         element: <PublicLayout />,
         children: [
+          {
+            path: "/",
+            element: <Navigate to="/switcher" />,
+          },
           {
             path: "/switcher",
             element: <AppSwitcher />,
