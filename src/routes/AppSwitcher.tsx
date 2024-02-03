@@ -1,26 +1,23 @@
-import { useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
-import PublicLayout from "./PublicLayout";
 export default function AppSwitcher() {
-  const [userType, setUserType] = useState<"trainer" | "customer" | null>(null);
-
-  if (!userType) {
-    return (
-      <div>
-        <h1>Baret PT App</h1>
-        <h2>Are you trainer or customer ?</h2>
-        <div>
-          <button onClick={() => setUserType("trainer")}>Trainer</button>
-          <button onClick={() => setUserType("customer")}>Customer</button>
-        </div>
-      </div>
-    );
-  }
-
+  const navigate = useNavigate();
+  const handleSelectUserType = (userType: "trainer" | "customer") => {
+    navigate({
+      pathname: "/login",
+      search: createSearchParams({ user_type: userType }).toString(),
+    });
+  };
   return (
-    <>
+    <div>
       <h1>Baret PT App</h1>
-      <PublicLayout userType={userType} />
-    </>
+      <h2>Are you trainer or customer ?</h2>
+      <div>
+        <button onClick={() => handleSelectUserType("trainer")}>Trainer</button>
+        <button onClick={() => handleSelectUserType("customer")}>
+          Customer
+        </button>
+      </div>
+    </div>
   );
 }

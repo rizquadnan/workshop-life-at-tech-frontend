@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import ErrorPage from "@/ErrorPage";
-import AppSwitcher from "@/routes/AppSwitcher";
 import { Dashboard } from "@/routes/Dashboard";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
@@ -9,11 +8,13 @@ import { Register } from "@/routes/Register";
 
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./providers/AuthProvider";
+import AppSwitcher from "./routes/AppSwitcher";
 import CustomerDashboard from "./routes/Customer/CustomerDashboard";
 import CustomerExercise from "./routes/Customer/CustomerExercise";
 import CustomerProfile from "./routes/Customer/CustomerProfile";
 import CustomerProfilePassword from "./routes/Customer/CustomerProfilePassword";
 import Login from "./routes/Login";
+import PublicLayout from "./routes/PublicLayout";
 import { RootLayout } from "./routes/RootLayout";
 import { TrainerCustomer } from "./routes/Trainer/TrainerCustomer";
 import TrainerCustomerAdd from "./routes/Trainer/TrainerCustomerAdd";
@@ -34,9 +35,12 @@ const routeRoot = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <AppSwitcher />,
+        element: <PublicLayout />,
         children: [
+          {
+            path: "/switcher",
+            element: <AppSwitcher />,
+          },
           {
             path: "/login",
             element: <Login />,
