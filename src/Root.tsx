@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import ErrorPage from "@/ErrorPage";
@@ -13,6 +14,7 @@ import PrivateLayout from "@/routes/PrivateLayout";
 import PublicLayout from "@/routes/PublicLayout";
 import { Register } from "@/routes/Register";
 
+const Login = lazy(() => import("@/routes/Login"));
 const routeRoot = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +23,11 @@ const routeRoot = createBrowserRouter([
     children: [
       {
         path: "login",
-        lazy: () => import("@/routes/Login"),
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Login />
+          </Suspense>
+        ),
       },
       {
         path: "register",

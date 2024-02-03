@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-export const Component = () => {
+const Login = () => {
   const location = useLocation();
 
   return (
@@ -9,3 +9,5 @@ export const Component = () => {
     </div>
   );
 };
+
+export default Login;
