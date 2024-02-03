@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import ErrorPage from "@/ErrorPage";
@@ -7,14 +6,14 @@ import { Dashboard } from "@/routes/Dashboard";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
 import { Register } from "@/routes/Register";
-const Login = lazy(() => import("@/routes/Login"));
-import LazyLoad from "./LazyLoad";
+
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./providers/AuthProvider";
 import CustomerDashboard from "./routes/Customer/CustomerDashboard";
 import CustomerExercise from "./routes/Customer/CustomerExercise";
 import CustomerProfile from "./routes/Customer/CustomerProfile";
 import CustomerProfilePassword from "./routes/Customer/CustomerProfilePassword";
+import Login from "./routes/Login";
 import { RootLayout } from "./routes/RootLayout";
 import { TrainerCustomer } from "./routes/Trainer/TrainerCustomer";
 import TrainerCustomerAdd from "./routes/Trainer/TrainerCustomerAdd";
@@ -40,11 +39,7 @@ const routeRoot = createBrowserRouter([
         children: [
           {
             path: "/login",
-            element: (
-              <LazyLoad>
-                <Login />
-              </LazyLoad>
-            ),
+            element: <Login />,
           },
           {
             path: "/register",
