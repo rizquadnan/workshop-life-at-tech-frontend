@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import ErrorPage from "@/ErrorPage";
@@ -13,8 +13,10 @@ import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
 import PublicLayout from "@/routes/PublicLayout";
 import { Register } from "@/routes/Register";
-
 const Login = lazy(() => import("@/routes/Login"));
+
+import LazyLoad from "./LazyLoad";
+
 const routeRoot = createBrowserRouter([
   {
     path: "/",
@@ -24,9 +26,9 @@ const routeRoot = createBrowserRouter([
       {
         path: "login",
         element: (
-          <Suspense fallback={<h1>Loading...</h1>}>
+          <LazyLoad>
             <Login />
-          </Suspense>
+          </LazyLoad>
         ),
       },
       {
