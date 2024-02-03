@@ -5,4 +5,5 @@
   border-color: var(--mantine-color-gray-2);
   border-radius: var(--mantine-radius-default);
   max-width: 480px;
+  min-width: 320px;
 }
