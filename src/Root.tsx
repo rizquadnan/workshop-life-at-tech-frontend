@@ -1,12 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import ErrorPage from "@/ErrorPage";
 import { Dashboard } from "@/routes/Dashboard";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
 import { Register } from "@/routes/Register";
+import ErrorPage from "@/utils/ErrorPage";
 
-import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./providers/AuthProvider";
 import AppSwitcher from "./routes/AppSwitcher";
 import CustomerDashboard from "./routes/Customer/CustomerDashboard";
@@ -24,6 +23,7 @@ import TrainerExerciseAdd from "./routes/Trainer/TrainerExerciseAdd";
 import TrainerExercisePending from "./routes/Trainer/TrainerExercisePending";
 import TrainerProfile from "./routes/Trainer/TrainerProfile";
 import TrainerProfilePassword from "./routes/Trainer/TrainerProfilePassword";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const routeRoot = createBrowserRouter([
   {
