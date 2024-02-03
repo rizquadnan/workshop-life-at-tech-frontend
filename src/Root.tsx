@@ -3,7 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Dashboard } from "@/routes/Dashboard";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
-import { Register } from "@/routes/Register";
+import Register from "@/routes/Register";
 import ErrorPage from "@/utils/ErrorPage";
 
 import { AuthProvider } from "./providers/AuthProvider";

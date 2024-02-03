@@ -1,4 +1,12 @@
-import { Anchor, Button, Stack, Text, TextInput, Title } from "@mantine/core";
+import {
+  Anchor,
+  Button,
+  PasswordInput,
+  Stack,
+  Text,
+  TextInput,
+  Title,
+} from "@mantine/core";
 import { Link, useSearchParams } from "react-router-dom";
 const Login = () => {
   const [searchParam] = useSearchParams();
@@ -9,7 +17,7 @@ const Login = () => {
       <Text>Hi {searchParam.get("user_type")}!</Text>
       <Stack>
         <TextInput label="Email" />
-        <TextInput label="Password" />
+        <PasswordInput label="Password" />
         <Button>Submit</Button>
         <Stack>
           <Anchor
