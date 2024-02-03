@@ -1,5 +1,7 @@
 import { Anchor, Button, PasswordInput, Stack, TextInput } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { Link } from "react-router-dom";
+
 const LoginRegisterForm = ({
   type,
   userType,
@@ -7,23 +9,50 @@ const LoginRegisterForm = ({
   type: "login" | "register";
   userType: string;
 }) => {
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validate: {
+      email: (value) => {
+        if (!value) {
+          return "Email is required";
+        }
+
+        return /^\S+@\S+$/.test(value) ? null : "Invalid email";
+      },
+      password: (value) => {
+        if (!value) {
+          return "Password is required";
+        }
+        return value.length > 8 ? null : "invalid password";
+      },
+    },
+  });
+
   return (
-    <Stack>
-      <TextInput label="Email" />
-      <PasswordInput label="Password" />
-      <Button>Submit</Button>
+    <form onSubmit={form.onSubmit((val) => console.log(val))}>
       <Stack>
-        <Anchor
-          component={Link}
-          to={`/${type === "login" ? "register" : "login"}?user_type=${userType}`}
-        >
-          {type === "login" ? "Register" : "Login"}
-        </Anchor>
-        <Anchor component={Link} to={`/forgot-password?user_type=${userType}`}>
-          Forgot Password
-        </Anchor>
+        <TextInput label="Email" {...form.getInputProps("email")} />
+        <PasswordInput label="Password" {...form.getInputProps("password")} />
+        <Button type="submit">Submit</Button>
+        <Stack>
+          <Anchor
+            component={Link}
+            to={`/${type === "login" ? "register" : "login"}?user_type=${userType}`}
+          >
+            {type === "login" ? "Register" : "Login"}
+          </Anchor>
+          <Anchor
+            component={Link}
+            to={`/forgot-password?user_type=${userType}`}
+          >
+            Forgot Password
+          </Anchor>
+        </Stack>
       </Stack>
-    </Stack>
+    </form>
   );
 };
 
