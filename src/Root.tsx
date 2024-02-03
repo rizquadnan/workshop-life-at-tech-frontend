@@ -2,13 +2,7 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import ErrorPage from "@/ErrorPage";
-import { CustomerAdd } from "@/routes/Customer/CustomerAdd";
-import { CustomerIndex } from "@/routes/Customer/CustomerIndex";
 import { Dashboard } from "@/routes/Dashboard";
-import { ExerciseActive } from "@/routes/Exercise/ExerciseActive";
-import { ExerciseIndex } from "@/routes/Exercise/ExerciseIndex";
-import { ExercisePending } from "@/routes/Exercise/ExercisePending";
-import { ExerciseStart } from "@/routes/Exercise/ExerciseStart";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
 import PublicLayout from "@/routes/PublicLayout";
@@ -17,7 +11,19 @@ const Login = lazy(() => import("@/routes/Login"));
 
 import LazyLoad from "./LazyLoad";
 import { AuthProvider } from "./providers/AuthProvider";
+import CustomerDashboard from "./routes/Customer/CustomerDashboard";
+import CustomerExercise from "./routes/Customer/CustomerExercise";
+import CustomerProfile from "./routes/Customer/CustomerProfile";
+import CustomerProfilePassword from "./routes/Customer/CustomerProfilePassword";
 import { RootLayout } from "./routes/RootLayout";
+import { TrainerCustomer } from "./routes/Trainer/TrainerCustomer";
+import TrainerCustomerAdd from "./routes/Trainer/TrainerCustomerAdd";
+import TrainerExercise from "./routes/Trainer/TrainerExercise";
+import TrainerExerciseActive from "./routes/Trainer/TrainerExerciseActive";
+import TrainerExerciseAdd from "./routes/Trainer/TrainerExerciseAdd";
+import TrainerExercisePending from "./routes/Trainer/TrainerExercisePending";
+import TrainerProfile from "./routes/Trainer/TrainerProfile";
+import TrainerProfilePassword from "./routes/Trainer/TrainerProfilePassword";
 
 const routeRoot = createBrowserRouter([
   {
@@ -51,7 +57,7 @@ const routeRoot = createBrowserRouter([
         ],
       },
       {
-        path: "/app",
+        path: "/app-trainer",
         element: <PrivateLayout />,
         errorElement: <ErrorPage />,
         children: [
@@ -60,36 +66,82 @@ const routeRoot = createBrowserRouter([
             element: <Dashboard />,
           },
           {
-            path: "exercise",
+            path: "customers",
             children: [
               {
                 index: true,
-                element: <ExerciseIndex />,
+                element: <TrainerCustomer />,
               },
               {
-                path: "start",
-                element: <ExerciseStart />,
-              },
-              {
-                path: "pending",
-                element: <ExercisePending />,
-              },
-              {
-                path: "active",
-                element: <ExerciseActive />,
+                path: "add",
+                element: <TrainerCustomerAdd />,
               },
             ],
           },
           {
-            path: "customer",
+            path: "exercises",
             children: [
               {
                 index: true,
-                element: <CustomerIndex />,
+                element: <TrainerExercise />,
               },
               {
-                path: "add",
-                element: <CustomerAdd />,
+                path: "start",
+                element: <TrainerExerciseAdd />,
+              },
+              {
+                path: "pending",
+                element: <TrainerExercisePending />,
+              },
+              {
+                path: "active",
+                element: <TrainerExerciseActive />,
+              },
+            ],
+          },
+          {
+            path: "profile",
+            children: [
+              {
+                index: true,
+                element: <TrainerProfile />,
+              },
+              {
+                path: "change-password",
+                element: <TrainerProfilePassword />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: "/app-customer",
+        element: <PrivateLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <CustomerDashboard />,
+          },
+          {
+            path: "exercises",
+            children: [
+              {
+                index: true,
+                element: <CustomerExercise />,
+              },
+            ],
+          },
+          {
+            path: "profile",
+            children: [
+              {
+                index: true,
+                element: <CustomerProfile />,
+              },
+              {
+                path: "change-password",
+                element: <CustomerProfilePassword />,
               },
             ],
           },
