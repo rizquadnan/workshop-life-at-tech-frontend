@@ -1,6 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import { Dashboard } from "@/routes/Dashboard";
 import { ForgotPassword } from "@/routes/ForgotPassword";
 import PrivateLayout from "@/routes/PrivateLayout";
 import Register from "@/routes/Register";
@@ -17,6 +16,7 @@ import PublicLayout from "./routes/PublicLayout";
 import { RootLayout } from "./routes/RootLayout";
 import { TrainerCustomer } from "./routes/Trainer/TrainerCustomer";
 import TrainerCustomerAdd from "./routes/Trainer/TrainerCustomerAdd";
+import TrainerDashboard from "./routes/Trainer/TrainerDashboard";
 import TrainerExercise from "./routes/Trainer/TrainerExercise";
 import TrainerExerciseActive from "./routes/Trainer/TrainerExerciseActive";
 import TrainerExerciseAdd from "./routes/Trainer/TrainerExerciseAdd";
@@ -76,14 +76,14 @@ const routeRoot = createBrowserRouter([
         path: "/app-trainer",
         element: (
           <ProtectedRoute>
-            <PrivateLayout />
+            <PublicLayout />
           </ProtectedRoute>
         ),
         errorElement: <ErrorPage />,
         children: [
           {
             index: true,
-            element: <Dashboard />,
+            element: <TrainerDashboard />,
           },
           {
             path: "customers",

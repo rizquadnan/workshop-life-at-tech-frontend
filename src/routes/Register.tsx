@@ -10,12 +10,13 @@ import {
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { isAxiosError } from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 import { register, RegisterRequest, registerRequestSchema } from "@/api/auth";
 const Register = () => {
   const [searchParam] = useSearchParams();
+  const navigate = useNavigate();
 
   const form = useForm<RegisterRequest>({
     initialValues: {
@@ -42,6 +43,8 @@ const Register = () => {
       notifications.show({
         title: "Success!",
         message: "Redirecting you to login...",
+        onClose: () =>
+          navigate(`/login?user_type=${searchParam.get("user_type")}`),
       });
     } catch (error) {
       if (isAxiosError(error)) {

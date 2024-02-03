@@ -11,13 +11,15 @@ import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { isAxiosError } from "axios";
 import { zodResolver } from "mantine-form-zod-resolver";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 import { login, LoginRequest, loginRequestSchema } from "@/api/auth";
-
+import { useAuth } from "@/providers/AuthProvider";
 const Login = () => {
+  const navigate = useNavigate();
   const [searchParam] = useSearchParams();
+  const auth = useAuth();
 
   const form = useForm<LoginRequest>({
     initialValues: {
@@ -29,15 +31,18 @@ const Login = () => {
 
   const handleLogin = async (val: LoginRequest) => {
     try {
-      await login({
+      const res = await login({
         userType: searchParam.get("user_type") as "trainer" | "customer",
         email: val.email,
         password: val.password,
       });
 
+      auth.onLoginSuccess(res.token, res.user);
+
       notifications.show({
         title: "Success!",
         message: "Redirecting you to app...",
+        onClose: () => navigate("/app-trainer"),
       });
     } catch (error) {
       if (isAxiosError(error)) {

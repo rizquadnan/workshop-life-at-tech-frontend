@@ -8,6 +8,7 @@ type ProtectedRouteProps = {
 };
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const auth = useAuth();
+  console.log("auth", auth);
 
   if (!auth?.token) {
     return <Navigate to={"/"} />;

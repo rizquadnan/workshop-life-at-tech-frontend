@@ -1,5 +1,13 @@
+import { Button, Stack, Text, Title } from "@mantine/core";
+
 const CustomerDashboard = () => {
-  return <div>CustomerDashboard</div>;
+  return (
+    <Stack>
+      <Title order={1}>Login</Title>
+      <Text>Hi Trainer!</Text>
+      <Button>Logout</Button>
+    </Stack>
+  );
 };
 
 export default CustomerDashboard;
