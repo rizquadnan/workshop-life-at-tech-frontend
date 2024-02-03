@@ -24,6 +24,7 @@ import TrainerExercisePending from "./routes/Trainer/TrainerExercisePending";
 import TrainerProfile from "./routes/Trainer/TrainerProfile";
 import TrainerProfilePassword from "./routes/Trainer/TrainerProfilePassword";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import UserTypeGuard from "./utils/UserTypeGuard";
 
 const routeRoot = createBrowserRouter([
   {
@@ -47,15 +48,27 @@ const routeRoot = createBrowserRouter([
           },
           {
             path: "/login",
-            element: <Login />,
+            element: (
+              <UserTypeGuard>
+                <Login />,
+              </UserTypeGuard>
+            ),
           },
           {
             path: "/register",
-            element: <Register />,
+            element: (
+              <UserTypeGuard>
+                <Register />,
+              </UserTypeGuard>
+            ),
           },
           {
             path: "/forgot-password",
-            element: <ForgotPassword />,
+            element: (
+              <UserTypeGuard>
+                <ForgotPassword />,
+              </UserTypeGuard>
+            ),
           },
         ],
       },
