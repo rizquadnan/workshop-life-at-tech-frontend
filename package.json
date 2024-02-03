@@ -25,10 +25,12 @@
     "axios": "^1.6.7",
     "dayjs": "^1.11.10",
     "framer-motion": "^11.0.3",
+    "mantine-form-zod-resolver": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.0",
-    "react-router-dom": "^6.21.3"
+    "react-router-dom": "^6.21.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.18.0",
