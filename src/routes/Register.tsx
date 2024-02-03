@@ -8,14 +8,16 @@ import {
   Title,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
+import { notifications } from "@mantine/notifications";
+import { isAxiosError } from "axios";
 import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
-import { registerRequestSchema, RegisterType } from "@/api/auth";
+import { register, RegisterRequest, registerRequestSchema } from "@/api/auth";
 const Register = () => {
   const [searchParam] = useSearchParams();
 
-  const form = useForm<RegisterType>({
+  const form = useForm<RegisterRequest>({
     initialValues: {
       email: "",
       password: "",
@@ -26,8 +28,37 @@ const Register = () => {
     validate: zodResolver(registerRequestSchema),
   });
 
-  const handleRegister = (val: RegisterType) => {
-    console.log(val);
+  const handleRegister = async (val: RegisterRequest) => {
+    try {
+      await register({
+        userType: searchParam.get("user_type") as "trainer" | "customer",
+        email: val.email,
+        name: val.name,
+        password: val.password,
+        passwordConfirm: val.passwordConfirm,
+        whatsapp: val.whatsapp,
+      });
+
+      notifications.show({
+        title: "Success!",
+        message: "Redirecting you to login...",
+      });
+    } catch (error) {
+      if (isAxiosError(error)) {
+        notifications.show({
+          title: error.message,
+          message: error.response?.data?.message ?? "Please try again",
+          color: "red",
+        });
+        return;
+      }
+
+      notifications.show({
+        title: "Something went wrong",
+        message: "Please try again later",
+        color: "red",
+      });
+    }
   };
 
   return (

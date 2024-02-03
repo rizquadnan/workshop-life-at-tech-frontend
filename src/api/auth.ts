@@ -27,7 +27,7 @@ export const registerRequestSchema = z.object({
   whatsapp: z.string().min(1, "Whatsapp is required"),
 });
 
-export type RegisterType = TypeOf<typeof registerRequestSchema>;
+export type RegisterRequest = TypeOf<typeof registerRequestSchema>;
 
 export const register = async ({
   userType,
@@ -36,10 +36,10 @@ export const register = async ({
   password,
   passwordConfirm,
   whatsapp,
-}: RegisterType & {
+}: RegisterRequest & {
   userType: string;
 }) => {
-  return await fetcher.post(`/register/${userType}`, {
+  return await fetcher.post(`/v1/auth/register/${userType}`, {
     email,
     name,
     password,
