@@ -10,11 +10,13 @@ import {
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { isAxiosError } from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 import { register, RegisterRequest, registerRequestSchema } from "@/api/auth";
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParam] = useSearchParams();
   const navigate = useNavigate();
 
@@ -31,6 +33,7 @@ const Register = () => {
 
   const handleRegister = async (val: RegisterRequest) => {
     try {
+      setIsLoading(true);
       await register({
         userType: searchParam.get("user_type") as "trainer" | "customer",
         email: val.email,
@@ -61,6 +64,8 @@ const Register = () => {
         message: "Please try again later",
         color: "red",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -79,7 +84,9 @@ const Register = () => {
             label="Password Confirm"
             {...form.getInputProps("passwordConfirm")}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" loading={isLoading}>
+            Submit
+          </Button>
           <Stack>
             <Anchor
               component={Link}

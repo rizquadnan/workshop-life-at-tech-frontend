@@ -11,6 +11,7 @@ import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { isAxiosError } from "axios";
 import { zodResolver } from "mantine-form-zod-resolver";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
@@ -20,6 +21,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [searchParam] = useSearchParams();
   const auth = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<LoginRequest>({
     initialValues: {
@@ -31,6 +33,7 @@ const Login = () => {
 
   const handleLogin = async (val: LoginRequest) => {
     try {
+      setIsLoading(true);
       const res = await login({
         userType: searchParam.get("user_type") as "trainer" | "customer",
         email: val.email,
@@ -59,6 +62,8 @@ const Login = () => {
         message: "Please try again later",
         color: "red",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,7 +76,9 @@ const Login = () => {
         <Stack>
           <TextInput label="Email" {...form.getInputProps("email")} />
           <PasswordInput label="Password" {...form.getInputProps("password")} />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" loading={isLoading}>
+            Submit
+          </Button>
           <Stack>
             <Anchor
               component={Link}
