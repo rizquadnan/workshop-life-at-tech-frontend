@@ -10,6 +10,7 @@ import { Register } from "@/routes/Register";
 const Login = lazy(() => import("@/routes/Login"));
 
 import LazyLoad from "./LazyLoad";
+import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./providers/AuthProvider";
 import CustomerDashboard from "./routes/Customer/CustomerDashboard";
 import CustomerExercise from "./routes/Customer/CustomerExercise";
@@ -58,7 +59,11 @@ const routeRoot = createBrowserRouter([
       },
       {
         path: "/app-trainer",
-        element: <PrivateLayout />,
+        element: (
+          <ProtectedRoute>
+            <PrivateLayout />
+          </ProtectedRoute>
+        ),
         errorElement: <ErrorPage />,
         children: [
           {
@@ -116,7 +121,11 @@ const routeRoot = createBrowserRouter([
       },
       {
         path: "/app-customer",
-        element: <PrivateLayout />,
+        element: (
+          <ProtectedRoute>
+            <PrivateLayout />
+          </ProtectedRoute>
+        ),
         errorElement: <ErrorPage />,
         children: [
           {
