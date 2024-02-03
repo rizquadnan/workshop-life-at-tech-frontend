@@ -14,7 +14,7 @@ export const login = async ({
   email,
   password,
 }: LoginRequest & { userType: string }) => {
-  return await fetcher.post(`/login/${userType}`, { email, password });
+  return await fetcher.post(`/v1/auth/login/${userType}`, { email, password });
 };
 
 export const registerRequestSchema = z.object({
