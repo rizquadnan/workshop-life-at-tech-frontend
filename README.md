@@ -40,6 +40,8 @@ Understanding requirement is a crucial part of a life as a Software Engineer. Be
 
 Development is an act of translating requirements into code that can be used (once deployed) by humans and/or other services. Backend is more about the latter. Backend services the Frontend
 
+**Login UI Requirement**
+![Login UI](image.png)
 **Login Requirement:**
 
 - this is a protected route. only user that is logged in can use it
@@ -48,6 +50,8 @@ Development is an act of translating requirements into code that can be used (on
 - set the start time of the created exercise to the current time
 - return the created exercise as success response
 
+**Register UI Requirement**
+![Register UI](image-1.png)
 **Register Requirement:**
 
 - this is a protected route. only user that is logged in can use it
